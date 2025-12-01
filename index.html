@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lazy Loaded Translator Image</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- jQuery Lazy -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.10/jquery.lazy.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #imageContainer {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            height: 400px;
+            overflow-y: scroll;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            display: block;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lazy Loaded Translator Image</h1>
+
+<button id="loadImage">Load Translator Image</button>
+
+<div id="imageContainer">
+    <p>Scroll down to load image...</p>
+
+    <!-- Lazy Load trigger area -->
+    <img 
+        class="lazy"
+        data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Translate_icon.svg/512px-Translate_icon.svg.png"
+        alt="Translator Icon"
+    >
+</div>
+
+<script>
+$(document).ready(function () {
+
+    // Initialize lazy loading
+    $(".lazy").Lazy();
+
+    // Simulate loading image via AJAX
+    $("#loadImage").click(function () {
+        // Append a second lazy-loaded image dynamically
+        $("#imageContainer").append(
+            '<img class="lazy" data-src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg" alt="People Talking (Translation)">'
+        );
+
+        // Re-initialize lazy on any new elements
+        $(".lazy").Lazy();
+    });
+
+});
+</script>
+
+</body>
+</html>
